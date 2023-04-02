@@ -1,0 +1,17 @@
+FROM openjdk:11-jre-slim
+
+WORKDIR /app
+
+COPY target/my-java-app.jar /app
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "/app/my-java-app.jar"]
+
+#Build Docker 
+docker build -t my-registry/my-java-app:latest .
+
+
+#Docker push to repo
+docker login my-registry
+docker push my-registry/my-java-app:latest
